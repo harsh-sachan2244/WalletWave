@@ -438,6 +438,16 @@ const handleUpdateProfile = async () => {
                     </button>
                   );
                 })}
+                <button
+  onClick={() => {
+    setActiveTab("add-transaction");
+    setMobileMenuOpen(false);
+  }}
+  className="w-full flex items-center justify-center gap-2 px-4 py-3 mt-4 rounded-xl bg-emerald-500 text-zinc-950 text-sm font-bold hover:bg-emerald-400 transition cursor-pointer shadow-lg shadow-emerald-500/10"
+>
+  <Plus className="w-4 h-4" />
+  <span>Add Transaction</span>
+</button>
               </div>
 
               <div className="pt-4 border-t border-zinc-800">
