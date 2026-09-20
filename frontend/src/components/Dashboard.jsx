@@ -660,7 +660,7 @@ const handleUpdateProfile = async () => {
   </h1>
 
   <p className="text-sm sm:text-base text-zinc-400 mt-1">
-    Track, manage, and understand your money with ease
+     Track, manage, and understand your money effortlessly ✨
   </p>
 </div>
 
