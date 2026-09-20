@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { API_URL } from "../api";
 
 const AddTransaction = ({ onTransactionAdded }) =>  {
   const [title, setTitle] = useState("");
@@ -50,7 +51,7 @@ const [date, setDate] = useState(
 
   try {
     const response = await axios.post(
-      "http://localhost:8000/transaction/add",
+      `${API_URL}/transaction/add`,
       {
         title: title.trim(),
         amount: numericAmount,

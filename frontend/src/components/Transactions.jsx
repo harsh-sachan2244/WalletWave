@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { API_URL } from "../api";
 import {
   Utensils,
   Briefcase,
@@ -26,7 +27,7 @@ const [deleteError, setDeleteError] = useState(null);
         
 
 const response = await axios.get(
-  "http://localhost:8000/transaction/all",
+  `${API_URL}/transaction/all`,
   {
     withCredentials: true,
   }
@@ -52,7 +53,7 @@ const handleDelete = async (id) => {
 
   try {
     await axios.delete(
-      `http://localhost:8000/transaction/delete/${id}`,
+      `${API_URL}/transaction/delete/${id}`,
       {
         withCredentials: true,
       }
@@ -86,7 +87,7 @@ const handleUpdate = async () => {
     setUpdating(true);
 
     const response = await axios.put(
-      `http://localhost:8000/transaction/update/${editingTransaction._id}`,
+      `${API_URL}/transaction/update/${editingTransaction._id}`,
       {
         title: editingTransaction.title,
         amount: Number(editingTransaction.amount),

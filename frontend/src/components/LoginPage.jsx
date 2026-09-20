@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../api";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function LoginPage() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/login",
+        `${API_URL}/login`,
         {
           email,
           password

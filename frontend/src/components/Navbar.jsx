@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
 import axios from 'axios';
+import { API_URL } from "../api";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -48,7 +49,7 @@ export default function Navbar() {
    useEffect(() => {
   const checkAuth = async () => {
     try {
-      await axios.get("http://localhost:8000/me", {
+      await axios.get(`${API_URL}/me`, {
         withCredentials: true,
       });
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_URL } from "../api";
 import {
   LayoutDashboard,
   CreditCard,
@@ -47,10 +48,10 @@ const [user, setUser] = useState(null);
 const refreshDashboard = async () => {
   try {
     const [summaryResponse, transactionsResponse] = await Promise.all([
-      axios.get("http://localhost:8000/transaction/summary", {
+      axios.get(`${API_URL}/transaction/summary`, {
         withCredentials: true,
       }),
-      axios.get("http://localhost:8000/transaction/all", {
+      axios.get(`${API_URL}/transaction/all`, {
         withCredentials: true,
       }),
     ]);
@@ -68,7 +69,7 @@ useEffect(() => {
   const fetchUser = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/me",
+        `${API_URL}/me`,
         {
           withCredentials: true,
         }
@@ -87,7 +88,7 @@ useEffect(() => {
   const fetchSummary = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/transaction/summary",
+        `${API_URL}/transaction/summary`,
         {
           withCredentials: true,
         }
@@ -105,7 +106,7 @@ useEffect(() => {
   const fetchRecentTransactions = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/transaction/all",
+        `${API_URL}/transaction/all`,
         {
           withCredentials: true,
         }
@@ -258,7 +259,7 @@ const chartData = (() => {
  const handleLogout = async () => {
   try {
     await axios.post(
-      "http://localhost:8000/logout",
+      `${API_URL}/logout`,
       {},
       {
         withCredentials: true,
@@ -281,7 +282,7 @@ const handleUpdateProfile = async () => {
 
   try {
     const response = await axios.put(
-      "http://localhost:8000/profile/update",
+      `${API_URL}/profile/update`,
       {
         name: profileName.trim(),
       },

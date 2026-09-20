@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import axios from 'axios';
+import { API_URL } from "../api";
 
 export default function SignupPage() {
   const [name, setName] = useState('');
@@ -20,7 +21,7 @@ export default function SignupPage() {
     }
 try {
     const  response = await axios.post(
-      "http://localhost:8000/signup",
+      `${API_URL}/signup`,
       {
         name,
         email,
