@@ -41,6 +41,8 @@ const [profileMessage, setProfileMessage] = useState("");
   totalIncome: 0,
   totalExpenses: 0,
   balance: 0,
+  monthlyIncome: 0,
+  monthlyExpenses: 0,
 });
 const [recentTransactions, setRecentTransactions] = useState([]);
 const [allTransactions, setAllTransactions] = useState([]);
@@ -678,9 +680,10 @@ const handleUpdateProfile = async () => {
               <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                 ₹{summary.balance.toLocaleString("en-IN")}
               </div>
-              <div className="text-xs text-emerald-400 font-medium mt-2 flex items-center gap-1">
-                <ArrowUpRight className="w-3.5 h-3.5" />
-                <span>+₹2,400 this month</span>
+              <div className="text-xs text-blue-400 font-medium mt-2 flex items-center gap-1">
+                <Wallet className="w-3.5 h-3.5" />
+                This month: ₹{(summary.monthlyIncome - summary.monthlyExpenses).toLocaleString("en-IN")}
+
               </div>
             </div>
 
@@ -697,7 +700,8 @@ const handleUpdateProfile = async () => {
               </div>
               <div className="text-xs text-emerald-400 font-medium mt-2 flex items-center gap-1">
                 <ArrowDownLeft className="w-3.5 h-3.5" />
-                <span>Received on schedule</span>
+                This month: ₹{summary.monthlyIncome.toLocaleString("en-IN")}
+
               </div>
             </div>
 
@@ -712,8 +716,10 @@ const handleUpdateProfile = async () => {
               <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                 ₹{summary.totalExpenses.toLocaleString("en-IN")}
               </div>
-              <div className="text-xs text-zinc-400 font-medium mt-2">
-                <span>36.5% of total income</span>
+              <div className="text-xs text-rose-400 font-medium mt-2 flex items-center gap-1">
+                <ArrowUpRight className="w-3.5 h-3.5" />
+                This month: ₹{summary.monthlyExpenses.toLocaleString("en-IN")}
+
               </div>
             </div>
 

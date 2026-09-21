@@ -96,12 +96,45 @@ export const getSummary = async (req, res) => {
 
     let totalIncome = 0;
     let totalExpenses = 0;
+    let monthlyIncome = 0;
+    let monthlyExpenses = 0;
+
+    const now = new Date();
+
+    const startOfMonth = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      1
+    );
+
+    const startOfNextMonth = new Date(
+      now.getFullYear(),
+      now.getMonth() + 1,
+      1
+    );
 
     transactions.forEach((transaction) => {
+      const amount = transaction.amount;
+
+      // All-time totals
       if (transaction.type === "income") {
-        totalIncome += transaction.amount;
+        totalIncome += amount;
       } else if (transaction.type === "expense") {
-        totalExpenses += transaction.amount;
+        totalExpenses += amount;
+      }
+
+      // Current month totals
+      const transactionDate = new Date(transaction.date);
+
+      if (
+        transactionDate >= startOfMonth &&
+        transactionDate < startOfNextMonth
+      ) {
+        if (transaction.type === "income") {
+          monthlyIncome += amount;
+        } else if (transaction.type === "expense") {
+          monthlyExpenses += amount;
+        }
       }
     });
 
@@ -111,6 +144,8 @@ export const getSummary = async (req, res) => {
       totalIncome,
       totalExpenses,
       balance,
+      monthlyIncome,
+      monthlyExpenses,
     });
   } catch (error) {
     return res.status(500).json({
