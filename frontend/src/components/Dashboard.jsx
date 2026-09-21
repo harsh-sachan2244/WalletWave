@@ -58,7 +58,13 @@ const refreshDashboard = async () => {
       }),
     ]);
 
-    setSummary(summaryResponse.data);
+    setSummary({
+  totalIncome: summaryResponse.data.totalIncome || 0,
+  totalExpenses: summaryResponse.data.totalExpenses || 0,
+  balance: summaryResponse.data.balance || 0,
+  monthlyIncome: summaryResponse.data.monthlyIncome || 0,
+  monthlyExpenses: summaryResponse.data.monthlyExpenses || 0,
+});
     setAllTransactions(transactionsResponse.data.transactions);
     setRecentTransactions(
       transactionsResponse.data.transactions.slice(0, 3)
