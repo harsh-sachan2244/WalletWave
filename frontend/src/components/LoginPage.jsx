@@ -12,9 +12,11 @@ export default function LoginPage() {
   const [rememberMe, setRememberMe] = useState(false);
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async(e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const response = await axios.post(
@@ -30,9 +32,7 @@ export default function LoginPage() {
       console.log(response.data);
       setIsError(false);
       setMessage(`Successfully logged in as ${email}! Redirecting...`);
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 1000);
+     navigate("/dashboard");
     } catch (error) {
       console.log(error);
       setIsError(true);
@@ -40,6 +40,9 @@ export default function LoginPage() {
         error.response?.data?.message || "Something went wrong"
       );
     }
+    finally {
+  setIsLoading(false);
+}
   };
 
   return (
@@ -158,11 +161,12 @@ export default function LoginPage() {
           </div>
 
           <button
-            type="submit"
-            className="w-full mt-2 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold py-3 rounded-xl transition text-sm shadow-md shadow-emerald-500/25 cursor-pointer active:scale-[0.99]"
-          >
-            Log In
-          </button>
+  type="submit"
+  disabled={isLoading}
+  className="w-full mt-2 bg-emerald-500 hover:bg-emerald-400 disabled:opacity-60 disabled:cursor-not-allowed text-zinc-950 font-bold py-3 rounded-xl transition text-sm shadow-md shadow-emerald-500/25 cursor-pointer active:scale-[0.99]"
+>
+  {isLoading ? "Logging in..." : "Log In"}
+</button>
         </form>
 
         {/* Link to Separate Sign Up Page */}
