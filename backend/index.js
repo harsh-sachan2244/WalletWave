@@ -20,6 +20,12 @@ app.use(cors({
   ],
     credentials: true
 }))
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    message: "WalletWave backend is running",
+  });
+});
 
 app.use("/",authRouter);
 app.use("/transaction", transactionRouter);
