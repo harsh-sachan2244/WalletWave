@@ -33,11 +33,11 @@ app.use("/transaction", transactionRouter);
 
 const startServer = async () => {
     try {
+        await connectDB();
+
         app.listen(port, () => {
             console.log(`Server is started at ${port}`);
         });
-
-        await connectDB();
 
     } catch (error) {
         console.error("Database connection failed:", error.message);
