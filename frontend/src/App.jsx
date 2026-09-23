@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import axios from 'axios';
+import { API_URL } from './api';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -10,10 +12,16 @@ import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
+import { useEffect } from 'react';
+
 
 
 
 function LandingPage() {
+
+  useEffect(() => {
+    axios.get(`${API_URL}/health`).catch(() => {});
+  }, []);
   return (
     <div className="min-h-screen bg-zinc-900 text-zinc-100 flex flex-col">
       <Navbar />
