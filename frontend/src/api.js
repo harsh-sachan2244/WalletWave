@@ -1,1 +1,1 @@
-export const API_URL = "/api";
+export const API_URL = "https://walletwave-backend-d8ag.onrender.com";
