@@ -88,16 +88,7 @@ export default function Navbar() {
         {/* Left: Simple WalletWave Logo */}
  <div
   onClick={() => {
-    console.log("LOGO CLICK:", isAuthenticated);
-
-    if (isAuthenticated === true) {
-      console.log("GOING TO DASHBOARD");
-      navigate("/dashboard");
-    } else {
-      console.log("GOING TO LANDING");
-      navigate("/");
-    }
-
+    navigate("/");
     setMobileMenuOpen(false);
   }}
   className="cursor-pointer shrink-0"
